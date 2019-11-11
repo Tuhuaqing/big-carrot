@@ -35,20 +35,20 @@ export default {
         },
         {
           text: '财富',
-          toName: 'dynamic',
+          toName: 'treasure',
           icon: 'gold-coin-o',
           activeIcon: 'gold-coin',
           onClick: () => {
-            if (this.$route.name != 'dynamic') {
-              this.$router.push('/dynamic')
+            if (this.$route.name != 'treasure') {
+              this.$router.push('/treasure')
             }
           }
         },
         {
-          text: '口碑',
+          text: '动态',
           toName: 'dynamic',
-          icon: 'bullhorn-o',
-          activeIcon: 'gold-coin',
+          icon: 'closed-eye',
+          activeIcon: 'eye',
           onClick: () => {
             if (this.$route.name != 'dynamic') {
               this.$router.push('/dynamic')
@@ -57,12 +57,12 @@ export default {
         },
         {
           text: '朋友',
-          toName: 'dynamic',
+          toName: 'friends',
           icon: 'friends-o',
           activeIcon: 'friends',
           onClick: () => {
-            if (this.$route.name != 'dynamic') {
-              this.$router.push('/dynamic')
+            if (this.$route.name != 'friends') {
+              this.$router.push('/friends')
             }
           }
         },
@@ -95,7 +95,7 @@ export default {
   width: 100%;
   height: 5vh;
   border-top: 0.1px solid gray;
-
+  background: white;
   position: fixed;
   bottom: 0;
   display: flex;
@@ -116,6 +116,10 @@ export default {
 
     .my-icon {
       font-size: 0.5rem;
+    }
+
+    .text{
+      font-size: 0.21rem;
     }
 
     .blue-icon{

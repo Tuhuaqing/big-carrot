@@ -16,10 +16,22 @@ const routes = [
     component: ()=>import('../views/Home.vue')
   },
   {
+    path: '/treasure',
+    name: 'treasure',
+    title: '财富',
+    component: ()=>import('../views/treasure.vue')
+  },
+  {
     path: '/dynamic',
     name: 'dynamic',
     title: '动态',
     component: () => import('../views/dynamic.vue')
+  },
+  {
+    path: '/friends',
+    name: 'friends',
+    title: '动态',
+    component: () => import('../views/friends.vue')
   },
   {
     path: '/me',

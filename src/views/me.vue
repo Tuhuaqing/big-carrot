@@ -5,10 +5,13 @@
       <span class="set">设置</span>
     </nav>
     <div class="page">
+      <!-- 用户信息box -->
       <div class="user-box">
+        <!-- 头像 -->
         <div class="avatar">
           <img class="img" src="@/assets/img/avatar2.jpg" alt />
         </div>
+        <!-- 信息 -->
         <div class="info">
           <div class="inner">
             <div class="name">Node</div>
@@ -17,7 +20,9 @@
         </div>
         <i class="arrowRight"></i>
       </div>
+      <!-- 主要内容 -->
       <main>
+        <!-- 卡片组1 -->
         <van-cell-group>
           <van-cell title="支付宝会员" is-link icon="shop-o">
             <van-icon
@@ -39,6 +44,7 @@
           </van-cell>
         </van-cell-group>
         <div class="interval"></div>
+        <!-- 卡片组2 -->
         <van-cell-group>
           <van-cell title="账单" is-link icon="shop-o">
             <van-icon
@@ -58,7 +64,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额" value="865214.15元" is-link>
+          <van-cell title="余额" value="865214.15元" is-link @click="onClickBalance">
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -105,6 +111,7 @@
           </van-cell>
         </van-cell-group>
         <div class="interval"></div>
+        <!-- 卡片组3 -->
         <van-cell-group>
           <van-cell title="蚂蚁信用" is-link>
             <van-icon
@@ -124,9 +131,49 @@
               :size="iconSize"
             />
           </van-cell>
+          <van-cell title="借呗" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="cluster"
+              :color="dodgerblue"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="网商银行" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="vip-card"
+              :color="green"
+              :size="iconSize"
+            />
+          </van-cell>
+        </van-cell-group>
+        <div class="interval"></div>
+        <!-- 卡片组4 -->
+        <van-cell-group>
+          <van-cell title="支付宝公益" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="youzan-shield"
+              :color="green"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="我的客服" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="smile-comment"
+              :color="dodgerblue"
+              :size="iconSize"
+            />
+          </van-cell>
         </van-cell-group>
       </main>
-      <van-skeleton title avatar :row="50" />
+      <!-- <van-skeleton title avatar :row="50" /> -->
     </div>
   </div>
 </template>
@@ -151,6 +198,11 @@ export default {
       setTimeout(() => {
         this.pullLoading = false
       }, 1000)
+    },
+    onClickBalance() {
+      this.$dialog.alert({
+        message: '老板, 再来一碟花生🥜'
+      })
     }
   }
 }

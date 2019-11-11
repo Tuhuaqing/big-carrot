@@ -21,13 +21,14 @@ $themeBg: rgb(58, 130, 212);
   position: fixed;
   top: 0;
   font-size: 0.47rem;
-  z-index: 9999;
+  z-index: 1000;
 }
 // 所有的页面块
 .page {
-  height: 95vh;
+  height: 100vh;
   overflow-y: scroll;
-  padding-top: $topToolHeight;
+  padding-top: $topToolHeight - 0.01rem;
+  padding-bottom: 7vh;
   font-size: 1rem;
 
   background: rgb(246, 246, 246);
@@ -39,8 +40,14 @@ $themeBg: rgb(58, 130, 212);
     color: #5fb878;
   }
 }
-
+.green-color{
+  color:rgb(65, 184, 131);
+}
 // cell-group间隔
 .interval {
   height: 0.5rem;
+}
+// 文字水平居中
+.center{
+  text-align: center;
 }

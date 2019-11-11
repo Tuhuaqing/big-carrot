@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="center green-color">动态广场</div>
+    <div class="center green-color">我的朋友</div>
   </div>
 </template>
 
