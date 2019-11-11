@@ -194,7 +194,7 @@ export default {
   }),
   methods: {
     onRefresh() {
-      console.log('加载中')
+      // console.log('加载中')
       setTimeout(() => {
         this.pullLoading = false
       }, 1000)
