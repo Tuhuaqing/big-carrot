@@ -8,28 +8,45 @@ body,
 $topToolHeight: 1rem;
 $themeBg: rgb(58, 130, 212);
 
-
 // 头部工具栏
 .top-tool {
   width: 100%;
   height: $topToolHeight;
+  line-height: $topToolHeight;
   // border: 1px solid lightblue;
   background: $themeBg;
   color: white;
   padding: 0.1rem;
-
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   position: fixed;
   top: 0;
-  font-size: 0.5rem;
+  font-size: 0.47rem;
   z-index: 9999;
 }
 // 所有的页面块
 .page {
   height: 95vh;
   //   border: 1px solid black;
-  color: red !important;
   overflow-y: scroll;
   padding-top: $topToolHeight;
   // padding: $topToolHeight 0.3rem 0.3rem 0.3rem;
   font-size: 1rem;
+
+  background: rgb(246, 246, 246);
 }
+
+// cell__value绿色字
+.green {
+  span {
+    color: #5fb878;
+  }
+}
+
+// cell-group间隔
+.interval {
+  height: 0.5rem;
+}
+
+// .van-cell__left-icon{
+
+// }

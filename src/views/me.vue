@@ -17,9 +17,51 @@
         </div>
         <i class="arrowRight"></i>
       </div>
-      <van-skeleton title avatar :row="100" />
-
-      <p>fasdfdsf</p>
+      <main>
+        <van-cell-group>
+          <van-cell title="支付宝会员" is-link icon="shop-o">
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="diamond"
+              color="dodgerblue"
+              size="0.7rem"
+            />
+          </van-cell>
+          <van-cell title="商家服务" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="shop-collect"
+              color="dodgerblue"
+              size="0.7rem"
+            />
+          </van-cell>
+        </van-cell-group>
+        <div class="interval"></div>
+        <van-cell-group>
+          <van-cell title="账单" is-link icon="shop-o" >
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="balance-list"
+              color="rgb(225,159,76)"
+              size="0.7rem"
+            />
+          </van-cell>
+          <van-cell title="总资产" value="账户安全保障中" :value-class="['green']" is-link icon="shop-o" />
+          <van-cell title="余额" value="******元" is-link icon="shop-o" />
+          <van-cell title="余额宝" is-link icon="shop-o" />
+          <van-cell title="花呗" is-link icon="shop-o" />
+          <van-cell title="余利宝" is-link icon="shop-o" />
+        </van-cell-group>
+        <div class="interval"></div>
+        <van-cell-group>
+          <van-cell title="支付宝会员" is-link icon="shop-o" />
+          <van-cell title="商家服务" is-link icon="shop-o" />
+        </van-cell-group>
+      </main>
+      <van-skeleton title avatar :row="50" />
     </div>
   </div>
 </template>
