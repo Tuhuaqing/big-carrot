@@ -1,7 +1,7 @@
 <template>
   <div class="cmp">
     <div class="item" :key="index" v-for="(item,index) in tabBarList_fun()" @click="item.onClick">
-      <van-icon :name="item.icon" style="font-size:0.45rem;" />
+      <van-icon :name="getIcon(item)" style="font-size:0.5rem" />
       <span class="text">{{item.text}}</span>
     </div>
   </div>
@@ -12,30 +12,7 @@ export default {
   props: {
     tabBarList: {
       type: Array,
-      default: () => [
-        {
-          text: '首页',
-          icon: 'wap-home-o',
-          onClick: () => {
-            console.log(this)
-            this.$route.push('/Home')
-          }
-        },
-        {
-          text: '消息',
-          icon: 'wap-home-o',
-          onClick: () => {
-            this.$route.push('/dynamic')
-          }
-        },
-        {
-          text: '我的',
-          icon: 'wap-home-o',
-          onClick: () => {
-            this.$route.push('/me')
-          }
-        }
-      ]
+      default: () => []
     }
   },
   data: () => ({}),
@@ -44,7 +21,9 @@ export default {
       return [
         {
           text: '首页',
+          toName: 'home',
           icon: 'wap-home-o',
+          activeIcon: 'star',
           onClick: () => {
             if (this.$route.name != 'home') {
               this.$router.push('/Home')
@@ -53,7 +32,9 @@ export default {
         },
         {
           text: '消息',
+          toName: 'dynamic',
           icon: 'wap-home-o',
+          activeIcon: 'star',
           onClick: () => {
             if (this.$route.name != 'dynamic') {
               this.$router.push('/dynamic')
@@ -62,7 +43,9 @@ export default {
         },
         {
           text: '我的',
-          icon: 'wap-home-o',
+          toName: 'me',
+          icon: 'friends-o',
+          activeIcon: 'star',
           onClick: () => {
             if (this.$route.name != 'me') {
               this.$router.push('/me')
@@ -70,6 +53,13 @@ export default {
           }
         }
       ]
+    }
+  },
+  computed: {
+    getIcon() {
+      return item => {
+        return this.$route.name == item.toName ? item.activeIcon : item.icon
+      }
     }
   }
 }
@@ -79,7 +69,7 @@ export default {
 .cmp {
   width: 100%;
   height: 5vh;
-  border-top: 1px solid gray;
+  border-top: 0.1px solid gray;
 
   position: fixed;
   bottom: 0;

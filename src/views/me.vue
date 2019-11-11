@@ -7,11 +7,11 @@
     <div class="page">
       <div class="user-box">
         <div class="avatar">
-          <img class="img" src="@/assets/img/avatar.jpg" alt />
+          <img class="img" src="@/assets/img/avatar2.jpg" alt />
         </div>
         <div class="info">
           <div class="inner">
-            <div class="name">Hello World</div>
+            <div class="name">Node</div>
             <div class="phone">134******82</div>
           </div>
         </div>
@@ -24,8 +24,8 @@
               class="van-cell__left-icon"
               slot="icon"
               name="diamond"
-              color="dodgerblue"
-              size="0.7rem"
+              :color="dodgerblue"
+              :size="iconSize"
             />
           </van-cell>
           <van-cell title="商家服务" is-link>
@@ -33,32 +33,97 @@
               class="van-cell__left-icon"
               slot="icon"
               name="shop-collect"
-              color="dodgerblue"
-              size="0.7rem"
+              :color="dodgerblue"
+              :size="iconSize"
             />
           </van-cell>
         </van-cell-group>
         <div class="interval"></div>
         <van-cell-group>
-          <van-cell title="账单" is-link icon="shop-o" >
+          <van-cell title="账单" is-link icon="shop-o">
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
               name="balance-list"
-              color="rgb(225,159,76)"
-              size="0.7rem"
+              :color="golden"
+              :size="iconSize"
             />
           </van-cell>
-          <van-cell title="总资产" value="账户安全保障中" :value-class="['green']" is-link icon="shop-o" />
-          <van-cell title="余额" value="******元" is-link icon="shop-o" />
-          <van-cell title="余额宝" is-link icon="shop-o" />
-          <van-cell title="花呗" is-link icon="shop-o" />
-          <van-cell title="余利宝" is-link icon="shop-o" />
+          <van-cell title="总资产" value="账户安全保障中" :value-class="['green']" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="wechat"
+              :color="dodgerblue"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="余额" value="865214元" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="gold-coin"
+              :color="dodgerblue"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="余额宝" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="bill"
+              color="#FF5722"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="花呗" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="goods-collect"
+              :color="dodgerblue"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="余利宝" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="medel"
+              :color="green"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="银行卡" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="card"
+              :color="golden"
+              :size="iconSize"
+            />
+          </van-cell>
         </van-cell-group>
         <div class="interval"></div>
         <van-cell-group>
-          <van-cell title="支付宝会员" is-link icon="shop-o" />
-          <van-cell title="商家服务" is-link icon="shop-o" />
+          <van-cell title="蚂蚁信用" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="youzan-shield"
+              :color="green"
+              :size="iconSize"
+            />
+          </van-cell>
+          <van-cell title="蚂蚁保险" is-link>
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="umbrella-circle"
+              :color="dodgerblue"
+              :size="iconSize"
+            />
+          </van-cell>
         </van-cell-group>
       </main>
       <van-skeleton title avatar :row="50" />
@@ -70,7 +135,15 @@
 export default {
   data: () => ({
     msg: 'hello',
-    pullLoading: false
+    pullLoading: false,
+    // icon统一大小
+    iconSize: '0.7rem',
+    // 统一金黄色
+    golden: 'rgb(225,159,76)',
+    // 统一蓝色
+    dodgerblue: 'dodgerblue',
+    // 统一绿色
+    green: '#5fb878'
   }),
   methods: {
     onRefresh() {
