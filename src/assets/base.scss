@@ -4,21 +4,24 @@ body,
   box-sizing: border-box !important;
 }
 
-// top-tool的高度,.page需要padding-top这么高
+// top-tool的高度
 $topToolHeight: 1rem;
+$themeBg: rgb(58, 130, 212);
+
 
 // 头部工具栏
 .top-tool {
   width: 100%;
   height: $topToolHeight;
   // border: 1px solid lightblue;
-  background: rgb(58, 130, 212);
+  background: $themeBg;
   color: white;
   padding: 0.1rem;
 
   position: fixed;
   top: 0;
   font-size: 0.5rem;
+  z-index: 9999;
 }
 // 所有的页面块
 .page {
@@ -27,6 +30,6 @@ $topToolHeight: 1rem;
   color: red !important;
   overflow-y: scroll;
   padding-top: $topToolHeight;
-  padding: 0.3rem;
+  // padding: $topToolHeight 0.3rem 0.3rem 0.3rem;
   font-size: 1rem;
 }

@@ -6,108 +6,19 @@
     </nav>
     <div class="page">
       <div class="user-box">
-        
+        <div class="avatar">
+          <img class="img" src="@/assets/img/avatar.jpg" alt />
+        </div>
+        <div class="info">
+          <div class="inner">
+            <div class="name">Hello World</div>
+            <div class="phone">134******82</div>
+          </div>
+        </div>
+        <i class="arrowRight"></i>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <van-skeleton title avatar :row="100" />
+
       <p>fasdfdsf</p>
     </div>
   </div>
@@ -131,10 +42,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.me-tool{
+.me-tool {
   text-align: center;
 
-  .set{
+  .set {
     position: absolute;
     right: 0.5rem;
     top: 50%;
@@ -142,5 +53,75 @@ export default {
     transform: translateY(-50%);
     font-family: '微软雅黑';
   }
+}
+
+.page {
+  .user-box {
+    height: 3rem;
+    background: rgb(58, 130, 212);
+    padding: 0 0.5rem;
+    // border: 1px solid red;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    position: relative;
+
+    .avatar {
+      width: 2rem;
+      height: 2rem;
+      border: 3px solid rgba($color: white, $alpha: 0.3);
+
+      .img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .info {
+      margin-left: 0.6rem;
+      height: 2rem;
+      display: table;
+
+      font-size: 0.5rem;
+      // border: 1px solid red;
+      padding: 0 !important;
+
+      .inner {
+        display: table-cell;
+        vertical-align: middle;
+
+        .name {
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+            'Lucida Sans', Arial, sans-serif;
+          color: white;
+        }
+
+        .phone {
+          border: 1px solid rgba($color: white, $alpha: 0.3);
+          padding: 2px 0.2rem;
+          color: white;
+          text-align: center;
+          font-size: 0.35rem;
+          margin-top: 0.2rem;
+          border-radius: 25px;
+        }
+      }
+    }
+  }
+}
+
+.arrowRight {
+  $degree: 45deg;
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  transform: rotate($degree) translateY(-50%);
+  -webkit-transform: rotate($degree);
+  // border: 1px solid red;
 }
 </style>
