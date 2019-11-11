@@ -58,7 +58,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额" value="865214元" is-link>
+          <van-cell title="余额" value="865214.15元" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"

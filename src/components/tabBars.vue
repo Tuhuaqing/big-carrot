@@ -1,7 +1,10 @@
 <template>
   <div class="cmp">
     <div class="item" :key="index" v-for="(item,index) in tabBarList_fun()" @click="item.onClick">
-      <van-icon :name="getIcon(item)" style="font-size:0.5rem" />
+      <van-icon
+        :name="getIcon(item)"
+        :class="['my-icon',{'blue-icon':$route.name == item.toName}]"
+      />
       <span class="text">{{item.text}}</span>
     </div>
   </div>
@@ -23,7 +26,7 @@ export default {
           text: '首页',
           toName: 'home',
           icon: 'wap-home-o',
-          activeIcon: 'star',
+          activeIcon: 'wap-home',
           onClick: () => {
             if (this.$route.name != 'home') {
               this.$router.push('/Home')
@@ -31,10 +34,32 @@ export default {
           }
         },
         {
-          text: '消息',
+          text: '财富',
           toName: 'dynamic',
-          icon: 'wap-home-o',
-          activeIcon: 'star',
+          icon: 'gold-coin-o',
+          activeIcon: 'gold-coin',
+          onClick: () => {
+            if (this.$route.name != 'dynamic') {
+              this.$router.push('/dynamic')
+            }
+          }
+        },
+        {
+          text: '口碑',
+          toName: 'dynamic',
+          icon: 'bullhorn-o',
+          activeIcon: 'gold-coin',
+          onClick: () => {
+            if (this.$route.name != 'dynamic') {
+              this.$router.push('/dynamic')
+            }
+          }
+        },
+        {
+          text: '朋友',
+          toName: 'dynamic',
+          icon: 'friends-o',
+          activeIcon: 'friends',
           onClick: () => {
             if (this.$route.name != 'dynamic') {
               this.$router.push('/dynamic')
@@ -44,8 +69,8 @@ export default {
         {
           text: '我的',
           toName: 'me',
-          icon: 'friends-o',
-          activeIcon: 'star',
+          icon: 'user-o',
+          activeIcon: 'manager',
           onClick: () => {
             if (this.$route.name != 'me') {
               this.$router.push('/me')
@@ -88,6 +113,14 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .my-icon {
+      font-size: 0.5rem;
+    }
+
+    .blue-icon{
+      color:dodgerblue;
+    }
   }
 }
 </style>
