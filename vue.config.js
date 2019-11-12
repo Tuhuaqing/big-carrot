@@ -52,20 +52,17 @@ module.exports = {
     // pwa: { // 单页插件相关配置 https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
     // },
     devServer: {
-        open: true,
-        host: 'localhost',
+        open: false,
+        host: '0.0.0.0',
         port: 8033,
-        // https: false,
-        // hotOnly: false,
-        // proxy: 'http://127.0.0.1:8080' // 配置跨域处理,只有一个代理
         proxy: {
             '/taobao': {
                 target: 'http://tcc.taobao.com',
-                ws: false,
-                changOrigin: true,
-                // pathRewrite: {
-                //     '^/taobao': ''
-                // }
+                ws: true,
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/taobao': ''
+                }
             }
         },
     }

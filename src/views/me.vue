@@ -24,7 +24,7 @@
       <main>
         <!-- 卡片组1 -->
         <van-cell-group>
-          <van-cell title="支付宝会员" is-link icon="shop-o" @click="queryTel" >
+          <van-cell title="支付宝会员" is-link icon="shop-o" @click="queryTel">
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -33,7 +33,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="商家服务" is-link>
+          <van-cell title="商家服务" is-link @click="queryDs">
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -193,17 +193,34 @@ export default {
     green: '#5fb878'
   }),
   methods: {
+    // 下拉刷新
     onRefresh() {
-      // console.log('加载中')
       setTimeout(() => {
         this.pullLoading = false
       }, 1000)
     },
     // 点击支付宝会员
-    queryTel(){
-      this.$api.taobao.queryTel(13412365478).then(r=>{
-        console.log(r)
-      })
+    queryTel() {
+      this.$api.taobao
+        .queryTel(13412365478)
+        .then(r => {
+          console.log(r)
+        })
+        .catch(err => {
+          this.$notify('访问失败')
+        })
+    },
+    // 点击商家服务
+    queryDs() {
+      // 电商接口
+      this.$api.taobao
+        .queryDs('大衣', 'cb')
+        .then(r => {
+          console.log(r)
+        })
+        .catch(err => {
+          this.$notify('访问失败')
+        })
     },
     onClickBalance() {
       this.$dialog.alert({
