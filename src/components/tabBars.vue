@@ -93,7 +93,7 @@ export default {
 <style lang="scss" scoped>
 .cmp {
   width: 100%;
-  height: 5vh;
+  height: 7vh;
   border-top: 0.1px solid gray;
   background: white;
   position: fixed;

@@ -1,5 +1,6 @@
-html,
-body,
+html{
+  background: rgb(246, 246, 246);
+}
 * {
   box-sizing: border-box !important;
 }
@@ -28,7 +29,7 @@ $themeBg: rgb(58, 130, 212);
   height: 100vh;
   overflow-y: scroll;
   padding-top: $topToolHeight - 0.01rem;
-  padding-bottom: 7vh;
+  padding-bottom: 9vh;
   font-size: 1rem;
 
   background: rgb(246, 246, 246);
