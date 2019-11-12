@@ -17,6 +17,10 @@ Vue.use(Vant)
 import 'lib-flexible'
 
 
+// api
+import api from './api'
+Vue.prototype.$api = api
+
 new Vue({
   router,
   store,

@@ -24,7 +24,7 @@
       <main>
         <!-- 卡片组1 -->
         <van-cell-group>
-          <van-cell title="支付宝会员" is-link icon="shop-o" >
+          <van-cell title="支付宝会员" is-link icon="shop-o" @click="queryTel" >
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -198,6 +198,12 @@ export default {
       setTimeout(() => {
         this.pullLoading = false
       }, 1000)
+    },
+    // 点击支付宝会员
+    queryTel(){
+      this.$api.taobao.queryTel(13412365478).then(r=>{
+        console.log(r)
+      })
     },
     onClickBalance() {
       this.$dialog.alert({
