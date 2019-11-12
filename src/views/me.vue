@@ -24,7 +24,7 @@
       <main>
         <!-- 卡片组1 -->
         <van-cell-group>
-          <van-cell title="支付宝会员" is-link icon="shop-o">
+          <van-cell title="支付宝会员" is-link icon="shop-o" >
             <van-icon
               class="van-cell__left-icon"
               slot="icon"

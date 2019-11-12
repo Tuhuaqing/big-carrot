@@ -2,7 +2,7 @@
   <div class="app">
     <router-view/>
 
-    <tab-bars></tab-bars>
+    <tab-bars v-if="this.$store.state.showTabBars"></tab-bars>
   </div>
 </template>
 
