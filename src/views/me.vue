@@ -214,11 +214,12 @@ export default {
     queryDs() {
       // 电商接口
       this.$api.taobao
-        .queryDs('大衣', 'cb')
+        .queryDs('大衣')
         .then(r => {
           console.log(r)
         })
         .catch(err => {
+          // console.log(err)
           this.$notify('访问失败')
         })
     },
