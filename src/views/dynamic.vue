@@ -1,14 +1,64 @@
 <template>
   <div class="page">
-    <div class="center green-color">动态广场</div>
+    <nav class="top-tool me-tool">
+      <span>动态广场</span>
+      <span class="set" @click="addPost">
+        <van-icon name="plus" />
+      </span>
+    </nav>
+    <main>
+      <div class="header">
+        <p>上传图片</p>
+        <file-selector></file-selector>
+      </div>
+      <br>
+      <section>
+        <van-skeleton title avatar :row="30" />
+      </section>
+    </main>
   </div>
 </template>
 
 <script>
+import fileSelector from '@/components/fileSelector.vue'
 export default {
-
+  components: {
+    fileSelector
+  },
+  methods: {
+    addPost() {
+      this.$dialog.alert({
+        message: '发帖功能正在拼命开发中...'
+      })
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.me-tool {
+  text-align: center;
+
+  .set {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    font-size: 0.4rem;
+    transform: translateY(-50%);
+    font-family: '微软雅黑';
+  }
+}
+
+main {
+  background: white;
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      font-size: 0.7rem;
+      color: black;
+    }
+  }
+}
 </style>

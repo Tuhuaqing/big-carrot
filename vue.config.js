@@ -1,6 +1,7 @@
 
 const path = require('path')
 const debug = process.env.NODE_ENV !== 'production'
+const webpack = require('webpack')
 //const VueConf = require('./src/assets/js/libs/vue_config_class')
 //const vueConf = new VueConf(process.argv)
 module.exports = {
@@ -36,7 +37,15 @@ module.exports = {
                     '@v': path.resolve(__dirname, './src/views'),
                     'vue$': 'vue/dist/vue.esm.js'
                 }
-            }
+            },
+            plugins: [
+                new webpack.ProvidePlugin({
+                    $: "jquery",
+                    jQuery: "jquery",
+                    "windows.jQuery": "jquery"
+                })
+
+            ]
         })
     },
     chainWebpack: config => { // webpack链接API，用于生成和修改webapck配置，

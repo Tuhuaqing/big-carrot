@@ -21,6 +21,14 @@ import 'lib-flexible'
 import api from './api'
 Vue.prototype.$api = api
 
+
+// jquery
+import $ from 'jquery'
+window.$ = $
+
+// 简化console.log
+window.l = console.log
+
 new Vue({
   router,
   store,
