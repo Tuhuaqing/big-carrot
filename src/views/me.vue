@@ -64,7 +64,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额" value="865214.15元" is-link @click="onClickBalance">
+          <van-cell title="余额" value="865214.15元" to="/me/balance" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -215,11 +215,6 @@ export default {
           // console.log(err)
           this.$notify('访问失败')
         })
-    },
-    onClickBalance() {
-      this.$dialog.alert({
-        message: '老板, 再来一碟花生🥜'
-      })
     }
   },
   computed: {

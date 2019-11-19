@@ -12,7 +12,10 @@ export default new Vuex.Store({
     // 统一蓝色
     dodgerblue: 'dodgerblue',
     // 统一绿色
-    green: '#5fb878'
+    green: '#5fb878',
+
+    // 手机号正则
+    phoneReg: /^1[3|4|5|6|7|8|9][0-9]{9}$/
   },
   mutations: {
   },
