@@ -15,7 +15,7 @@
           <span>金额(元)</span>
         </div>
         <div class="number">
-          <span>289671.78</span>
+          <span>1865214.15</span>
         </div>
       </div>
       <!-- 卡片组1 -->
