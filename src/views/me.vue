@@ -73,7 +73,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额宝" is-link>
+          <van-cell title="余额宝" is-link to="/me/balance">
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -179,18 +179,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data: () => ({
     msg: 'hello',
-    pullLoading: false,
-    // icon统一大小
-    iconSize: '0.7rem',
-    // 统一金黄色
-    golden: 'rgb(225,159,76)',
-    // 统一蓝色
-    dodgerblue: 'dodgerblue',
-    // 统一绿色
-    green: '#5fb878'
+    pullLoading: false
   }),
   methods: {
     // 下拉刷新
@@ -228,6 +221,9 @@ export default {
         message: '老板, 再来一碟花生🥜'
       })
     }
+  },
+  computed: {
+    ...mapState(['iconSize', 'golden', 'dodgerblue', 'green'])
   }
 }
 </script>

@@ -9,36 +9,66 @@ const routes = [
     path: '/',
     redirect:'/Home'
   },
+  /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/Home',
     name: 'home',
     title: '主页',
-    component: ()=>import('../views/Home.vue')
+    component: ()=>import('../views/Home.vue'),
+    meta:{
+      showTabBars:true
+    }
   },
+  /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/treasure',
     name: 'treasure',
     title: '财富',
-    component: ()=>import('../views/treasure.vue')
+    component: ()=>import('../views/treasure.vue'),
+    meta:{
+      showTabBars:true
+    }
   },
+  /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/dynamic',
     name: 'dynamic',
     title: '动态',
-    component: () => import('../views/dynamic.vue')
+    component: () => import('../views/dynamic.vue'),
+    meta:{
+      showTabBars:true
+    }
   },
+  /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/friends',
     name: 'friends',
-    title: '动态',
-    component: () => import('../views/friends.vue')
+    title: '朋友',
+    component: () => import('../views/friends.vue'),
+    meta:{
+      showTabBars:true
+    }
   },
+  /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/me',
     name: 'me',
     title: '我的',
-    component: () => import('../views/me.vue')
+    component: () => import('../views/me.vue'),
+    meta:{
+      showTabBars:true
+    }
   },
+  {
+    path: '/me/balance',
+    name: 'meBalance',
+    title: '余额',
+    component: () => import('../views/me.balance.vue'),
+    meta:{
+      showTabBars:false
+    }
+  },
+  /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '*',
     component: () =>import('../views/404.vue')

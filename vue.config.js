@@ -38,14 +38,14 @@ module.exports = {
                     'vue$': 'vue/dist/vue.esm.js'
                 }
             },
-            plugins: [
-                new webpack.ProvidePlugin({
-                    $: "jquery",
-                    jQuery: "jquery",
-                    "windows.jQuery": "jquery"
-                })
+            // plugins: [
+            //     new webpack.ProvidePlugin({
+            //         $: "jquery",
+            //         jQuery: "jquery",
+            //         "windows.jQuery": "jquery"
+            //     })
 
-            ]
+            // ]
         })
     },
     chainWebpack: config => { // webpack链接API，用于生成和修改webapck配置，
