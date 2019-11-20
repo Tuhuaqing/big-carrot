@@ -2,7 +2,7 @@
   <div>
     <nav class="top-tool me-tool">
       <span>我的</span>
-      <span class="set">设置</span>
+      <span class="set" @click="$router.push({name:'meSetting'})">设置</span>
     </nav>
     <div class="page">
       <!-- 用户信息box -->
@@ -65,7 +65,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额" value="1865214.15元" to="/me/balance" is-link>
+          <van-cell title="余额" value="1865214.15元" :to="{name:'meBalance'}" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"

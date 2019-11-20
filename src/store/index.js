@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from "@/router";
 import { localStorage as lcStg } from '@/util/storage.js'
+
 
 Vue.use(Vuex)
 
@@ -30,7 +32,9 @@ export default new Vuex.Store({
     },
     logout(state) {
       state.userInfo = null
-      console.log(`${user.userName}登出成功`)
+      lcStg.remove('wsj_userInfo')
+      console.log(`登出成功`)
+      router.push({name:'login'})
     }
   },
   actions: {

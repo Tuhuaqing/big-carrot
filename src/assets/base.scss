@@ -1,4 +1,4 @@
-html{
+html {
   background: rgb(246, 246, 246);
 }
 * {
@@ -24,6 +24,29 @@ $themeBg: rgb(58, 130, 212);
   font-size: 0.47rem;
   z-index: 1000;
 }
+
+// 用于可返回页面的back-top
+.back-top {
+  padding: 0 0.3rem;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  > .title {
+    justify-content: center;
+  }
+  .text-back {
+    font-size: 0.35rem;
+  }
+}
+
 // 所有的页面块
 .page {
   height: 100vh;
@@ -41,18 +64,18 @@ $themeBg: rgb(58, 130, 212);
     color: #5fb878;
   }
 }
-.green-color{
-  color:rgb(65, 184, 131);
+.green-color {
+  color: rgb(65, 184, 131);
 }
 // cell-group间隔
 .interval {
   height: 0.5rem;
 }
 // 文字水平居中
-.center{
+.center {
   text-align: center;
 }
 // 距下1rem
-.mb05r{
-  margin-bottom: .5rem;
+.mb05r {
+  margin-bottom: 0.5rem;
 }

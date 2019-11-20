@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <nav class="top-tool top">
+    <nav class="top-tool back-top">
       <div @click="$router.back()">
         <van-icon name="arrow-left" />
         <span class="text-back">返回</span>
@@ -110,26 +110,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.top {
-  padding: 0 0.3rem;
-  display: -webkit-flex;
-  display: flex;
-  justify-content: space-between;
-
-  > div {
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    flex: 1;
-  }
-
-  > .title {
-    justify-content: center;
-  }
-  .text-back {
-    font-size: 0.35rem;
-  }
-}
 
 main {
   .balance-box {

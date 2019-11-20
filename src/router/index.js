@@ -67,6 +67,15 @@ const routes = [
       showTabBars: false
     }
   },
+  {
+    path: '/me/setting',
+    name: 'meSetting',
+    title: '设置',
+    component: () => import('../views/me.setting.vue'),
+    meta: {
+      showTabBars: false
+    }
+  },
   /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/login',
