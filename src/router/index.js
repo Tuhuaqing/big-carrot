@@ -1,22 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    redirect:'/Home'
+    redirect: '/Home'
   },
   /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/Home',
     name: 'home',
     title: '主页',
-    component: ()=>import('../views/Home.vue'),
-    meta:{
-      showTabBars:true
+    component: () => import('../views/Home.vue'),
+    meta: {
+      showTabBars: true
     }
   },
   /////////////////////////////////////////////////////////////////////////////////////
@@ -24,9 +23,9 @@ const routes = [
     path: '/treasure',
     name: 'treasure',
     title: '财富',
-    component: ()=>import('../views/treasure.vue'),
-    meta:{
-      showTabBars:true
+    component: () => import('../views/treasure.vue'),
+    meta: {
+      showTabBars: true
     }
   },
   /////////////////////////////////////////////////////////////////////////////////////
@@ -35,8 +34,8 @@ const routes = [
     name: 'dynamic',
     title: '动态',
     component: () => import('../views/dynamic.vue'),
-    meta:{
-      showTabBars:true
+    meta: {
+      showTabBars: true
     }
   },
   /////////////////////////////////////////////////////////////////////////////////////
@@ -45,8 +44,8 @@ const routes = [
     name: 'friends',
     title: '朋友',
     component: () => import('../views/friends.vue'),
-    meta:{
-      showTabBars:true
+    meta: {
+      showTabBars: true
     }
   },
   /////////////////////////////////////////////////////////////////////////////////////
@@ -55,8 +54,8 @@ const routes = [
     name: 'me',
     title: '我的',
     component: () => import('../views/me.vue'),
-    meta:{
-      showTabBars:true
+    meta: {
+      showTabBars: true
     }
   },
   {
@@ -64,14 +63,27 @@ const routes = [
     name: 'meBalance',
     title: '余额',
     component: () => import('../views/me.balance.vue'),
-    meta:{
-      showTabBars:false
+    meta: {
+      showTabBars: false
+    }
+  },
+  /////////////////////////////////////////////////////////////////////////////////////
+  {
+    path: '/login',
+    name: 'login',
+    title: '登录',
+    component: () => import('../views/login.vue'),
+    meta: {
+      showTabBars: false
     }
   },
   /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '*',
-    component: () =>import('../views/404.vue')
+    component: () => import('../views/404.vue'),
+    meta: {
+      showTabBars: true
+    }
   }
 
 ]

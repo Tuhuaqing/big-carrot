@@ -46,7 +46,7 @@
       v-model="showPopup"
       round
       position="bottom"
-      :style="{height:'35vh',padding:'0.5rem','text-align':'center'}"
+      :style="{padding:'0.5rem','text-align':'center'}"
     >
       <div class="popup-toast">请输入支付宝账户(手机号)</div>
       <van-cell-group>

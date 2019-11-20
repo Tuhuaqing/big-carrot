@@ -15,9 +15,21 @@ export default new Vuex.Store({
     green: '#5fb878',
 
     // 手机号正则
-    phoneReg: /^1[3|4|5|6|7|8|9][0-9]{9}$/
+    phoneReg: /^1[3|4|5|6|7|8|9][0-9]{9}$/,
+
+
+    // 当前用户信息
+    userInfo: null
   },
   mutations: {
+    login(state,user){
+      state.userInfo = user
+      console.log(`${user.userName}登录成功`)
+    },
+    logout(state){
+      state.userInfo = null
+      console.log(`${user.userName}登出成功`)
+    }
   },
   actions: {
   },

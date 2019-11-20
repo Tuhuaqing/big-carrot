@@ -29,6 +29,20 @@ window.$ = $
 // 简化console.log
 window.l = console.log
 
+
+// 路由前拦截
+const whiteList = ['login', 'home']// 免登录白名单
+
+router.beforeEach((to, from, next) => {
+  // 没有用户信息并且不在白名单: 跳转登陆页面
+  if (!store.state.userInfo && !whiteList.includes(to.name)) {
+    next({name:'login'})
+  } else {
+    // 否则通过
+    next()
+  }
+})
+
 new Vue({
   router,
   store,

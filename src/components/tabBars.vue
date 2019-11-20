@@ -33,17 +33,17 @@ export default {
             }
           }
         },
-        {
-          text: '财富',
-          toName: 'treasure',
-          icon: 'gold-coin-o',
-          activeIcon: 'gold-coin',
-          onClick: () => {
-            if (this.$route.name != 'treasure') {
-              this.$router.push('/treasure')
-            }
-          }
-        },
+        // {
+        //   text: '财富',
+        //   toName: 'treasure',
+        //   icon: 'gold-coin-o',
+        //   activeIcon: 'gold-coin',
+        //   onClick: () => {
+        //     if (this.$route.name != 'treasure') {
+        //       this.$router.push('/treasure')
+        //     }
+        //   }
+        // },
         {
           text: '动态',
           toName: 'dynamic',
