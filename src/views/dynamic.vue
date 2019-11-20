@@ -13,7 +13,7 @@
       </div>
       <br>
       <section>
-        <van-skeleton title avatar :row="30" />
+        <van-skeleton :key="index" v-for="(item,index) in 10" title avatar :row="3" />
       </section>
     </main>
   </div>

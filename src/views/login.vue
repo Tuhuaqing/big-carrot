@@ -68,18 +68,14 @@ export default {
         return
       }
       let user = {
+        nickName: '微社交003',
+        phone: '15811234566',
+        gender: '0',
         userName: this.userName,
         password: this.password
       }
       this.$store.commit('login', user)
-        this.$router
-          .push('/me')
-          .then(a => {
-            l(a)
-          })
-          .catch(err => {
-            l(err)
-          })
+      this.$router.push('/me')
     }
   }
 }

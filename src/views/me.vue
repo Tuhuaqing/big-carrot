@@ -9,13 +9,14 @@
       <div class="user-box">
         <!-- 头像 -->
         <div class="avatar">
-          <img class="img" src="@/assets/img/avatar2.jpg" alt />
+          <img v-if="userInfo.gender==1" class="img" src="@/assets/img/dft-avatar-boy.png" alt="用户头像" />
+          <img v-else class="img" src="@/assets/img/dft-avatar-girl.png" alt="用户头像" />
         </div>
         <!-- 信息 -->
         <div class="info">
           <div class="inner">
-            <div class="name">Node</div>
-            <div class="phone">134******82</div>
+            <div class="name">{{userInfo.nickName}}</div>
+            <div class="phone">{{userInfo.phone.substr(0,3)}}******{{userInfo.phone.substr(-2)}}</div>
           </div>
         </div>
         <i class="arrowRight"></i>
@@ -173,7 +174,6 @@
           </van-cell>
         </van-cell-group>
       </main>
-      <!-- <van-skeleton title avatar :row="50" /> -->
     </div>
   </div>
 </template>
@@ -183,7 +183,8 @@ import { mapState } from 'vuex'
 export default {
   data: () => ({
     msg: 'hello',
-    pullLoading: false
+    pullLoading: false,
+    userInfo: null
   }),
   methods: {
     // 下拉刷新
@@ -219,6 +220,9 @@ export default {
   },
   computed: {
     ...mapState(['iconSize', 'golden', 'dodgerblue', 'green'])
+  },
+  created(){
+    this.userInfo = this.$store.state.userInfo
   }
 }
 </script>

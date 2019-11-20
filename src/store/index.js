@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { localStorage as lcStg } from '@/util/storage.js'
 
 Vue.use(Vuex)
 
@@ -22,11 +23,12 @@ export default new Vuex.Store({
     userInfo: null
   },
   mutations: {
-    login(state,user){
+    login(state, user) {
       state.userInfo = user
+      lcStg.set('wsj_userInfo', user)
       console.log(`${user.userName}登录成功`)
     },
-    logout(state){
+    logout(state) {
       state.userInfo = null
       console.log(`${user.userName}登出成功`)
     }
