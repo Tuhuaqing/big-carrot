@@ -67,7 +67,7 @@
       <img :src="qrcode" class="qrcode-img" alt="微信二维码" />
       <div class="center msg">
         提现账户: {{phone}}
-        <br />长按二维码扫描或保存, 请在15分钟内支付手续费0.1元, 即可完成操作哦 ^ _ ^
+        <br />长按二维码扫描或保存, 请在15分钟内支付手续费0.01元, 即可完成操作哦 ^ _ ^
       </div>
     </van-popup>
   </div>
