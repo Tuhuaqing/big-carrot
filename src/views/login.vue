@@ -68,7 +68,7 @@ export default {
         return
       }
       let user = {
-        nickName: '微社交003',
+        nickName: '微社交001',
         phone: '15811234566',
         gender: '0',
         userName: this.userName,
