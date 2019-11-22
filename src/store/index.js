@@ -28,7 +28,7 @@ export default new Vuex.Store({
     login(state, user) {
       state.userInfo = user
       lcStg.set('wsj_userInfo', user)
-      console.log(`${user.nickName}登录成功`)
+      // console.log(`${user.nickName}登录成功`)
     },
     logout(state) {
       state.userInfo = null

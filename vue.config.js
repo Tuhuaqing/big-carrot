@@ -68,6 +68,7 @@ module.exports = {
             '/taobao': {
                 target: 'http://tcc.taobao.com',
                 ws: true,
+                secure: false,
                 changeOrigin: true,
                 pathRewrite: {
                     '^/taobao': ''

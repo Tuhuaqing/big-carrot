@@ -79,7 +79,7 @@ export default {
         password: this.password
       }
       this.$store.commit('login', user)
-      this.$router.push('/me')
+      this.$router.push('/me').catch(err=>{})
     }
   }
 }
