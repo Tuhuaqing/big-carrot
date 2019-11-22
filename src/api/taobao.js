@@ -8,10 +8,6 @@ export default {
 
     // 查询电商信息
     queryDs(par,callback){
-
-
         return axios.get(`https://suggest.taobao.com/sug?code=utf-8&q=${par}`)
-
-        
     }
 }

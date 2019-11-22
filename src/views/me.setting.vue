@@ -9,7 +9,8 @@
       <div></div>
     </nav>
     <main>
-      <van-button type="danger" style="margin-top:.5rem;" block @click="logout">退出登录</van-button>
+      <div class="center wxts">暂无内容</div>
+      <van-button type="danger" class="btm-btn" round block @click="logout">退出登录</van-button>
     </main>
   </div>
 </template>
@@ -24,5 +25,23 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  main{
+    // padding: 0.5rem;
+    .btm-btn{
+      position: fixed;
+      bottom: .5rem;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      display: block;
+      width: 8rem;
+    }
+  }
+
+  .wxts{
+    padding-top: .5rem;
+    font-size: .5rem;
+    color:gray;
+  }
 </style>
