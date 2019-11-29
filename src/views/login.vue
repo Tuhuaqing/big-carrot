@@ -80,6 +80,14 @@ export default {
       }
       this.$store.commit('login', user)
       this.$router.push('/me').catch(err=>{})
+      // this.$api.myserver
+      //   .testQueryUsers()
+      //   .then(r => {
+      //     console.log(r)
+      //   })
+      //   .catch(err => {
+      //     console.error(err)
+      //   })
     }
   }
 }

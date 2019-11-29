@@ -8,8 +8,13 @@
       <!-- 用户信息box -->
       <div class="user-box">
         <!-- 头像 -->
-        <div class="avatar">
-          <img v-if="userInfo.gender==1" class="img" src="@/assets/img/dft-avatar-boy.png" alt="用户头像" />
+        <div class="avatar" @click="$refs.fileTool.clickInput()">
+          <img
+            v-if="userInfo.gender==1"
+            class="img"
+            src="@/assets/img/dft-avatar-boy.png"
+            alt="用户头像"
+          />
           <img v-else class="img" src="@/assets/img/dft-avatar-girl.png" alt="用户头像" />
         </div>
         <!-- 信息 -->
@@ -175,11 +180,14 @@
         </van-cell-group>
       </main>
     </div>
+    <!-- 文件tool -->
+    <file-tool ref="fileTool" @selected="modifyAvatar"></file-tool>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+
 export default {
   data: () => ({
     msg: 'hello',
@@ -216,12 +224,27 @@ export default {
           // console.log(err)
           this.$notify('访问失败')
         })
+    },
+    modifyAvatar(files) {
+      console.log(files)
+      if (!files.length) return
+      let formData = new FormData()
+      formData.append('avatar', files[0])
+      l(formData)
+      this.$api.myserver
+        .uploadAvatar(formData)
+        .then(r => {
+          console.log(r)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   },
   computed: {
     ...mapState(['iconSize', 'golden', 'dodgerblue', 'green'])
   },
-  created(){
+  created() {
     this.userInfo = this.$store.state.userInfo
   }
 }

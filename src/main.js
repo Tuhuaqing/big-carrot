@@ -29,6 +29,11 @@ window.$ = $
 // 简化console.log
 window.l = console.log
 
+// 全局组件:fileTool
+import fileTool from '@/components/fileTool.vue'
+Vue.component('fileTool',fileTool)
+
+
 // 封装storage
 import { localStorage as lcStg, sessionStorage as ssStg } from '@/util/storage.js'
 Vue.prototype.$lcStg = lcStg

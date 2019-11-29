@@ -62,7 +62,7 @@ module.exports = {
     // },
     devServer: {
         open: false,
-        host: '0.0.0.0',
+        host: 'localhost',
         port: 8083,
         proxy: {
             '/taobao': {
@@ -72,6 +72,15 @@ module.exports = {
                 changeOrigin: true,
                 pathRewrite: {
                     '^/taobao': ''
+                }
+            },
+            '/myserver':{
+                target: 'http://localhost:8858',
+                ws: true,
+                secure: true,
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/myserver': ''
                 }
             }
         },
