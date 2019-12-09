@@ -30,7 +30,7 @@
       <main>
         <!-- 卡片组1 -->
         <van-cell-group>
-          <van-cell title="支付宝会员" is-link icon="shop-o" @click="queryTel">
+          <van-cell title="微社交会员" is-link icon="shop-o" @click="queryTel">
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -79,7 +79,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额宝" is-link to="/me/balance">
+          <van-cell title="余额宝" is-link >
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -159,7 +159,7 @@
         <div class="interval"></div>
         <!-- 卡片组4 -->
         <van-cell-group>
-          <van-cell title="支付宝公益" is-link>
+          <van-cell title="微社交公益" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -168,12 +168,24 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="我的客服" is-link>
+          <van-cell title="微社交客服" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
               name="smile-comment"
               :color="dodgerblue"
+              :size="iconSize"
+            />
+          </van-cell>
+        </van-cell-group>
+        <div class="interval"></div>
+        <van-cell-group>
+          <van-cell title="提供经济支持" is-link @click="$dialog.alert({message: '请添加作者QQ:2438974094,感激万分!'})" >
+            <van-icon
+              class="van-cell__left-icon"
+              slot="icon"
+              name="youzan-shield"
+              :color="green"
               :size="iconSize"
             />
           </van-cell>
@@ -201,7 +213,7 @@ export default {
         this.pullLoading = false
       }, 1000)
     },
-    // 点击支付宝会员
+    // 点击微社交会员
     queryTel() {
       this.$api.taobao
         .queryTel(13412365478)
@@ -209,7 +221,7 @@ export default {
           console.log(r)
         })
         .catch(err => {
-          this.$notify('访问失败')
+          this.$notify('服务端未开放')
         })
     },
     // 点击商家服务
@@ -222,7 +234,7 @@ export default {
         })
         .catch(err => {
           // console.log(err)
-          this.$notify('访问失败')
+          this.$notify('服务端未开放')
         })
     },
     modifyAvatar(files) {

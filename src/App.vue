@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <transition :name="animName">
+    <transition :name="animName" mode="in-out">
       <router-view />
     </transition>
     <tab-bars v-if="$route.meta.showTabBars"></tab-bars>
