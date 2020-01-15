@@ -6,13 +6,13 @@ export default {
         return axios.get('/myserver/getUsers')
     },
 
-    // 上传头像
-    uploadAvatar(params) {
-        return axios.post('/uploadAvatar', params, {
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'multipart/form-data'
+
+    // 上传文件换取url
+    uploadAny(params) {
+        return axios.post('/newserver/users/upload-any', params,{
+            headers:{
+                'Content-Type':'multipart/form-data;charset=utf-8'
             }
         })
-    }
+    },
 }

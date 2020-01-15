@@ -79,7 +79,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额宝" is-link >
+          <van-cell title="余额宝" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -180,7 +180,11 @@
         </van-cell-group>
         <div class="interval"></div>
         <van-cell-group>
-          <van-cell title="提供经济支持" is-link @click="$dialog.alert({message: '请添加作者QQ:2438974094,感激万分!'})" >
+          <van-cell
+            title="提供经济支持"
+            is-link
+            @click="$dialog.alert({message: '请添加作者QQ:2438974094,感激万分!'})"
+          >
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -238,15 +242,18 @@ export default {
         })
     },
     modifyAvatar(files) {
-      console.log(files)
       if (!files.length) return
+
       let formData = new FormData()
-      formData.append('avatar', files[0])
-      l(formData)
+      formData.append('file',files[0])
+
       this.$api.myserver
-        .uploadAvatar(formData)
+        .uploadAny(formData)
         .then(r => {
-          console.log(r)
+          if (r.status == 200 && r.data.status == 'ok') {
+            let result = r.data.data
+            console.log(result)
+          }
         })
         .catch(err => {
           console.error(err)
