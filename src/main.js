@@ -40,7 +40,7 @@ Vue.prototype.$lcStg = lcStg
 Vue.prototype.$ssStg = ssStg
 
 // 路由前拦截
-const whiteList = ['login', 'home']// 免登录白名单
+const whiteList = ['login', 'home','register']// 免登录白名单
 router.beforeEach((to, from, next) => {
 
   // 先检索localStorage中是否有userInfo数据

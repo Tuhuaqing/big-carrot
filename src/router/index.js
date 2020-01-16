@@ -86,6 +86,15 @@ const routes = [
       showTabBars: false
     }
   },
+  {
+    path: '/register',
+    name: 'register',
+    title: '注册',
+    component: () => import('../views/register.vue'),
+    meta: {
+      showTabBars: false
+    }
+  },
   /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '*',

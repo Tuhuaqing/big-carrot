@@ -29,6 +29,12 @@ export default {
         this.animName = ''
       }
     }
+  },
+  created() {
+    this.$toast.setDefaultOptions('loading', {
+      forbidClick: true,
+      duration: 0
+    })
   }
 }
 </script>

@@ -9,13 +9,8 @@
       <div class="user-box">
         <!-- 头像 -->
         <div class="avatar" @click="$refs.fileTool.clickInput()">
-          <img
-            v-if="userInfo.gender==1"
-            class="img"
-            src="@/assets/img/dft-avatar-boy.png"
-            alt="用户头像"
-          />
-          <img v-else class="img" src="@/assets/img/dft-avatar-girl.png" alt="用户头像" />
+          <img class="img" :src="avatar" alt="用户头像" />
+          <!-- <img v-else class="img" src="@/assets/img/dft-avatar-girl.png" alt="用户头像" /> -->
         </div>
         <!-- 信息 -->
         <div class="info">
@@ -203,12 +198,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import avatar_boy from '@/assets/img/dft-avatar-boy.png'
+import avatar_girl from '@/assets/img/dft-avatar-girl.png'
 
 export default {
   data: () => ({
     msg: 'hello',
     pullLoading: false,
-    userInfo: null
+    userInfo: null,
+    avatar: ''
   }),
   methods: {
     // 下拉刷新
@@ -241,11 +239,16 @@ export default {
           this.$notify('服务端未开放')
         })
     },
+    // 更改头像
     modifyAvatar(files) {
       if (!files.length) return
 
+      let loading = this.$toast.loading({
+        message: '更换中'
+      })
+
       let formData = new FormData()
-      formData.append('file',files[0])
+      formData.append('file', files[0])
 
       this.$api.myserver
         .uploadAny(formData)
@@ -253,6 +256,8 @@ export default {
           if (r.status == 200 && r.data.status == 'ok') {
             let result = r.data.data
             console.log(result)
+            this.avatar = result.fileUrl
+            loading.clear()
           }
         })
         .catch(err => {
@@ -265,6 +270,11 @@ export default {
   },
   created() {
     this.userInfo = this.$store.state.userInfo
+    if (this.userInfo.gender == 1) {
+      this.avatar = avatar_boy
+    } else {
+      this.avatar = avatar_girl
+    }
   }
 }
 </script>
