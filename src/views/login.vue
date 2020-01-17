@@ -44,7 +44,7 @@
         type="primary"
         style="width:3rem;height:1rem;line-height:1rem;"
         plain
-        @click="$toast('暂不支持注册,请使用公共账号')"
+        @click="$router.push({name:'register'})"
       >注册</van-button>
     </div>
   </div>

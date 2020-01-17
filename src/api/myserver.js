@@ -24,6 +24,11 @@ export default {
     // 获取用户信息by id
     getUserInfo(id){
         return axios.get(`/newserver/user/userinfo/${id}`)
+    },
+
+    // 更改头像接口
+    changeAvatarUrl(userid,url){
+        return axios.get(`/newserver/user/change-avatar/${userid}?avatar_url=${url}`)
     }
     
 }

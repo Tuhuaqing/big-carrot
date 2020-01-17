@@ -249,18 +249,29 @@ export default {
       let formData = new FormData()
       formData.append('file', files[0])
 
+      let avatar_url
       this.$api.myserver
         .uploadAny(formData)
         .then(r => {
           if (r.status == 200 && r.data.status == 'ok') {
             let result = r.data.data
-            console.log(result)
-            this.avatar = result.fileUrl
+            avatar_url = result.fileUrl
+            return this.$api.myserver.changeAvatarUrl(
+              this.userInfo._id,
+              avatar_url
+            )
+          }
+        })
+        .then(r => {
+          if (r.status == 200 && r.data.status == 'ok') {
+            this.avatar = avatar_url
+            this.$notify({ type: 'success', message: '头像更换成功!' });
           }
         })
         .catch(err => {
           console.error(err)
-        }).finally(()=>{
+        })
+        .finally(() => {
           loading.clear()
         })
     }
@@ -272,7 +283,7 @@ export default {
     this.userInfo = this.$store.state.userInfo
     if (!this.userInfo.avatar_url && this.userInfo.gender == 1) {
       this.avatar = avatar_boy
-    } else if(!this.userInfo.avatar_url && this.userInfo.gender == 0) {
+    } else if (!this.userInfo.avatar_url && this.userInfo.gender == 0) {
       this.avatar = avatar_girl
     } else {
       this.avatar = this.userInfo.avatar_url

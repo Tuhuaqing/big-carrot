@@ -12,9 +12,6 @@
         label="用户名"
         left-icon="contact"
         placeholder="请输入用户名"
-        :error="userNameErr"
-        @focus="userNameErr=false"
-        @blur="userNameErr=userName?false:true"
       />
       <!-- 密码 -->
       <van-field
@@ -24,9 +21,6 @@
         label="密码"
         placeholder="请输入密码"
         left-icon="closed-eye"
-        :error="passwordErr"
-        @focus="passwordErr=false"
-        @blur="passwordErr=password?false:true"
       />
       <!-- 邮箱 -->
       <van-field
@@ -36,9 +30,6 @@
         label="邮箱"
         left-icon="contact"
         placeholder="请输入邮箱"
-        :error="userNameErr"
-        @focus="userNameErr=false"
-        @blur="userNameErr=userName?false:true"
       />
       <!-- 生日 -->
       <van-datetime-picker
@@ -75,14 +66,12 @@
 export default {
   data() {
     return {
-      userName: 'test',
-      password: '123',
-      email: '123@qq.com',
+      userName: '',
+      password: '',
+      email: '',
       gender: '1',
       birth: new Date(2000, 5, 6),
-
-      userNameErr: false,
-      passwordErr: false,
+      
       minDate: new Date(1950, 0, 1),
       maxDate: new Date()
     }
