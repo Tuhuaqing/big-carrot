@@ -246,6 +246,7 @@ export default {
         message: '更换中'
       })
 
+      // 使用表单上传文件
       let formData = new FormData()
       formData.append('file', files[0])
 
