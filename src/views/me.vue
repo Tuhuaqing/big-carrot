@@ -270,7 +270,6 @@ export default {
   },
   created() {
     this.userInfo = this.$store.state.userInfo
-    console.log(this.userInfo)
     if (!this.userInfo.avatar_url && this.userInfo.gender == 1) {
       this.avatar = avatar_boy
     } else if(!this.userInfo.avatar_url && this.userInfo.gender == 0) {

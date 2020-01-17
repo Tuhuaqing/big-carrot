@@ -11,6 +11,11 @@ export default {
         })
     },
 
+    // 登录
+    login(params){
+        return axios.post('/newserver/user/login',params)
+    } ,
+
     // 注册用户
     register(params){
         return axios.post('/newserver/user/register',params)

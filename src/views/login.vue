@@ -5,7 +5,7 @@
     <div>
       <!-- 用户名 -->
       <van-field
-        v-model.trim="userName"
+        v-model.trim="username"
         clearable
         class="mb05r translucence"
         label="用户名"
@@ -13,7 +13,7 @@
         placeholder="请输入用户名(user)"
         :error="userNameErr"
         @focus="userNameErr=false"
-        @blur="userNameErr=userName?false:true"
+        @blur="userNameErr=username?false:true"
       />
       <!-- 密码 -->
       <van-field
@@ -54,8 +54,8 @@
 export default {
   data() {
     return {
-      userName: 'user',
-      password: '123456',
+      username: '',
+      password: '',
 
       userNameErr: false,
       passwordErr: false
@@ -63,31 +63,27 @@ export default {
   },
   methods: {
     login() {
-      if (!this.userName || !this.password) {
+      if (!this.username || !this.password) {
         this.$toast('请填写用户名或密码')
         return
       }
-      if (this.userName != 'user' || this.password != '123456') {
-        this.$toast('账号或密码错误')
-        return
-      }
-      let user = {
-        nickName: '微社交001',
-        phone: '15811234566',
-        gender: '0',
-        userName: this.userName,
-        password: this.password
-      }
-      this.$store.commit('login', user)
-      this.$router.push('/me').catch(err=>{})
-      // this.$api.myserver
-      //   .testQueryUsers()
-      //   .then(r => {
-      //     console.log(r)
-      //   })
-      //   .catch(err => {
-      //     console.error(err)
-      //   })
+      let loading = this.$toast.loading('正在登录...')
+      this.$api.myserver
+        .login({ username: this.username, password:this.password })
+        .then(r => {
+          loading.clear()
+          if (r.status == 200 && r.data.status == 'ok') {
+            this.$toast('登录成功!')
+            this.$lcStg.set('wsj_userInfo', r.data.data)
+            this.$store.state.userInfo = r.data.data
+            this.$router.push('/me').catch(err => {})
+          }else{
+            this.$toast(r.data.message,{duration:3000})
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 }
