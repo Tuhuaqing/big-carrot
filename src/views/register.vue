@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="center title">微社交*注册</div>
+    <div class="center title">注册微社交</div>
     <br />
     <br />
     <div>
@@ -19,7 +19,7 @@
       <!-- 密码 -->
       <van-field
         v-model.trim="password"
-        class="translucence"
+        class="mb05r translucence"
         type="password"
         label="密码"
         placeholder="请输入密码"
@@ -41,9 +41,20 @@
         @blur="userNameErr=userName?false:true"
       />
       <!-- 生日 -->
-      <van-datetime-picker v-model="birth" type="date" :min-date="new Date(1950,1,1)" :max-date="new Date()" />
+      <van-datetime-picker
+        :title="'生日:'+$common.dateToYmd(birth)"
+        v-model="birth"
+        type="date"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :item-height="100"
+        :visible-item-count="4"
+        cancel-button-text=" "
+        confirm-button-text=" "
+      />
       <!-- 性别 -->
-      <van-radio-group v-model="gender">
+      <p class="label">性别</p>
+      <van-radio-group v-model="gender" icon-size="0.6rem" class="gender-box">
         <van-radio name="1">男</van-radio>
         <van-radio name="0">女</van-radio>
       </van-radio-group>
@@ -51,11 +62,9 @@
     <!-- 按钮 -->
     <div class="btns">
       <van-button
-        class="translucence"
+        class="register-btn"
         icon="https://img.yzcdn.cn/vant/logo.png"
-        type="primary"
         style="width:3rem;height:1rem;line-height:1rem;"
-        plain
         @click="register()"
       >注册</van-button>
     </div>
@@ -66,39 +75,57 @@
 export default {
   data() {
     return {
-      userName: '',
-      password: '',
-      email: '',
-      gender: 1,
-      birth: '',
+      userName: 'test',
+      password: '123',
+      email: '123@qq.com',
+      gender: '1',
+      birth: new Date(2000, 5, 6),
 
       userNameErr: false,
-      passwordErr: false
+      passwordErr: false,
+      minDate: new Date(1950, 0, 1),
+      maxDate: new Date()
     }
   },
   methods: {
     register() {
-      if (!this.userName || !this.password) {
-        this.$toast('请填写用户名或密码')
+      if (
+        !this.userName ||
+        !this.password ||
+        !this.email ||
+        !this.gender ||
+        !this.birth
+      ) {
+        this.$toast('有空未填')
         return
       }
+      let loading = this.$toast.loading('注册中...')
       let user = {
-        nickName: '微社交001',
-        phone: '15811234566',
-        gender: '0',
-        userName: this.userName,
-        password: this.password
+        nickname: this.userName,
+        username: this.userName,
+        password: this.password,
+        email: this.email,
+        birth: this.$common.dateToYmd(this.birth),
+        gender: this.gender
       }
-      this.$store.commit('login', user)
-      this.$router.push('/me').catch(err => {})
-      // this.$api.myserver
-      //   .testQueryUsers()
-      //   .then(r => {
-      //     console.log(r)
-      //   })
-      //   .catch(err => {
-      //     console.error(err)
-      //   })
+
+      this.$api.myserver
+        .register(user)
+        .then(r => {
+          if (r.status == 200 && r.data.status == 'ok') {
+            console.log(r)
+            this.$lcStg.set('wsj_userInfo', r.data.data)
+            this.$store.state.userInfo = r.data.data
+            this.$toast('恭喜你,注册成功!')
+            this.$router.push({ name: 'me' }).catch(err => {})
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+        .finally(() => {
+          loading.clear()
+        })
     }
   }
 }
@@ -140,6 +167,24 @@ export default {
 // 半透明
 .translucence {
   background: rgba($color: white, $alpha: 0.3);
+}
+
+// 注册按钮
+.register-btn {
+  background: linear-gradient(to right, #4bb0ff, #6149f6);
+  color: white;
+  border: none;
+}
+
+.label {
+  font-size: 0.37333rem;
+  text-align: center;
+}
+
+// 性别选择框
+.gender-box {
+  background: white;
+  padding: 0.3rem;
 }
 </style>
 

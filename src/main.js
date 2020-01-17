@@ -31,7 +31,7 @@ window.l = console.log
 
 // 全局组件:fileTool
 import fileTool from '@/components/fileTool.vue'
-Vue.component('fileTool',fileTool)
+Vue.component('fileTool', fileTool)
 
 
 // 封装storage
@@ -40,13 +40,14 @@ Vue.prototype.$lcStg = lcStg
 Vue.prototype.$ssStg = ssStg
 
 // 路由前拦截
-const whiteList = ['login', 'home','register']// 免登录白名单
+const whiteList = ['login', 'home', 'register']// 免登录白名单
 router.beforeEach((to, from, next) => {
 
   // 先检索localStorage中是否有userInfo数据
   let user = lcStg.get('wsj_userInfo')
   if (user && Object.keys(user).length) {
-    store.commit('login', user)
+    store.state.userInfo = user
+    store.dispatch('fetchUserInfo', user._id)
   }
 
   // 没有用户信息并且不在白名单: 跳转登陆页面
@@ -57,6 +58,10 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+// common.js
+import common from '@/util/common'
+Vue.prototype.$common = common
 
 new Vue({
   router,

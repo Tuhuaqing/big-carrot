@@ -10,13 +10,12 @@
         <!-- 头像 -->
         <div class="avatar" @click="$refs.fileTool.clickInput()">
           <img class="img" :src="avatar" alt="用户头像" />
-          <!-- <img v-else class="img" src="@/assets/img/dft-avatar-girl.png" alt="用户头像" /> -->
         </div>
         <!-- 信息 -->
         <div class="info">
           <div class="inner">
-            <div class="name">{{userInfo.nickName}}</div>
-            <div class="phone">{{userInfo.phone.substr(0,3)}}******{{userInfo.phone.substr(-2)}}</div>
+            <div class="name">{{userInfo.nickname}}</div>
+            <div class="phone">初出茅庐</div>
           </div>
         </div>
         <i class="arrowRight"></i>
@@ -257,11 +256,12 @@ export default {
             let result = r.data.data
             console.log(result)
             this.avatar = result.fileUrl
-            loading.clear()
           }
         })
         .catch(err => {
           console.error(err)
+        }).finally(()=>{
+          loading.clear()
         })
     }
   },
@@ -270,10 +270,13 @@ export default {
   },
   created() {
     this.userInfo = this.$store.state.userInfo
-    if (this.userInfo.gender == 1) {
+    console.log(this.userInfo)
+    if (!this.userInfo.avatar_url && this.userInfo.gender == 1) {
       this.avatar = avatar_boy
-    } else {
+    } else if(!this.userInfo.avatar_url && this.userInfo.gender == 0) {
       this.avatar = avatar_girl
+    } else {
+      this.avatar = this.userInfo.avatar_url
     }
   }
 }
@@ -339,7 +342,7 @@ export default {
           padding: 2px 0.2rem;
           color: white;
           text-align: center;
-          font-size: 0.35rem;
+          font-size: 0.315rem;
           margin-top: 0.2rem;
           border-radius: 25px;
         }

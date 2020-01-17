@@ -11,5 +11,14 @@ export default {
         })
     },
 
+    // 注册用户
+    register(params){
+        return axios.post('/newserver/user/register',params)
+    },
+
+    // 获取用户信息by id
+    getUserInfo(id){
+        return axios.get(`/newserver/user/userinfo/${id}`)
+    }
     
 }

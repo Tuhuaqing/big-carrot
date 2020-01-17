@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import router from "@/router";
 import { localStorage as lcStg } from '@/util/storage.js'
-
+import myserver from '@/api/myserver'
 
 Vue.use(Vuex)
 
@@ -28,16 +28,24 @@ export default new Vuex.Store({
     login(state, user) {
       state.userInfo = user
       lcStg.set('wsj_userInfo', user)
-      // console.log(`${user.nickName}登录成功`)
     },
     logout(state) {
       state.userInfo = null
       lcStg.remove('wsj_userInfo')
       console.log(`登出成功`)
-      router.push({name:'login'})
+      router.push({ name: 'login' })
     }
   },
   actions: {
+    fetchUserInfo({ commit }, userId) {
+      myserver.getUserInfo(userId).then(r => {
+        if (r.status == 200 && r.data.status == 'ok') {
+          commit('login', r.data.data)
+        }
+      }).catch(err => {
+        console.error(err)
+      })
+    }
   },
   modules: {
   }
