@@ -15,7 +15,7 @@
         <div class="info">
           <div class="inner">
             <div class="name">{{userInfo.nickname}}</div>
-            <div class="phone">初出茅庐</div>
+            <div class="phone">{{$common.turnMembership(userInfo.membership)}}</div>
           </div>
         </div>
         <i class="arrowRight"></i>
@@ -250,6 +250,7 @@ export default {
       let formData = new FormData()
       formData.append('file', files[0])
 
+      // 先上传文件到文件服务器,再和后台交互
       let avatar_url
       this.$api.myserver
         .uploadAny(formData)
@@ -282,6 +283,8 @@ export default {
   },
   created() {
     this.userInfo = this.$store.state.userInfo
+
+    // 更正头像
     if (!this.userInfo.avatar_url && this.userInfo.gender == 1) {
       this.avatar = avatar_boy
     } else if (!this.userInfo.avatar_url && this.userInfo.gender == 0) {

@@ -89,13 +89,15 @@ export default {
         return
       }
       let loading = this.$toast.loading('注册中...')
+      // User temp
       let user = {
         nickname: this.userName,
         username: this.userName,
         password: this.password,
         email: this.email,
         birth: this.$common.dateToYmd(this.birth),
-        gender: this.gender
+        gender: this.gender,
+        membership: 'ordinary'
       }
 
       this.$api.myserver
