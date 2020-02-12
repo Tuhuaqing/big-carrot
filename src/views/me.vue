@@ -6,9 +6,9 @@
     </nav>
     <div class="page">
       <!-- 用户信息box -->
-      <div class="user-box">
+      <div class="user-box" @click="$router.push({name:'meDetail'})">
         <!-- 头像 -->
-        <div class="avatar" @click="$refs.fileTool.clickInput()">
+        <div class="avatar">
           <img class="img" :src="avatar" alt="用户头像" />
         </div>
         <!-- 信息 -->
@@ -73,7 +73,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余额宝" is-link>
+          <!-- <van-cell title="余额宝" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -81,8 +81,8 @@
               color="#FF5722"
               :size="iconSize"
             />
-          </van-cell>
-          <van-cell title="花呗" is-link>
+          </van-cell> -->
+          <van-cell title="花呗代还" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -91,7 +91,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="余利宝" is-link>
+          <!-- <van-cell title="余利宝" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -99,7 +99,7 @@
               :color="green"
               :size="iconSize"
             />
-          </van-cell>
+          </van-cell> -->
           <van-cell title="银行卡" is-link>
             <van-icon
               class="van-cell__left-icon"
@@ -113,7 +113,7 @@
         <div class="interval"></div>
         <!-- 卡片组3 -->
         <van-cell-group>
-          <van-cell title="蚂蚁信用" is-link>
+          <van-cell title="微信用" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -122,7 +122,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="蚂蚁保险" is-link>
+          <van-cell title="微保险" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -131,7 +131,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="借呗" is-link>
+          <van-cell title="微借贷" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -140,7 +140,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="网商银行" is-link>
+          <van-cell title="我的卡包" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -190,8 +190,6 @@
         </van-cell-group>
       </main>
     </div>
-    <!-- 文件tool -->
-    <file-tool ref="fileTool" @selected="modifyAvatar"></file-tool>
   </div>
 </template>
 
@@ -216,73 +214,30 @@ export default {
     },
     // 点击微社交会员
     queryTel() {
-      this.$api.taobao
-        .queryTel(13412365478)
-        .then(r => {
-          console.log(r)
-        })
-        .catch(err => {
-          this.$notify('服务端未开放')
-        })
     },
     // 点击商家服务
     queryDs() {
-      // 电商接口
-      this.$api.taobao
-        .queryDs('大衣')
-        .then(r => {
-          console.log(r)
-        })
-        .catch(err => {
-          // console.log(err)
-          this.$notify('服务端未开放')
-        })
-    },
-    // 更改头像
-    modifyAvatar(files) {
-      if (!files.length) return
-
-      let loading = this.$toast.loading({
-        message: '更换中'
-      })
-
-      // 使用表单上传文件
-      let formData = new FormData()
-      formData.append('file', files[0])
-
-      // 先上传文件到文件服务器,再和后台交互
-      let avatar_url
-      this.$api.myserver
-        .uploadAny(formData)
-        .then(r => {
-          if (r.status == 200 && r.data.status == 'ok') {
-            let result = r.data.data
-            avatar_url = result.fileUrl
-            return this.$api.myserver.changeAvatarUrl(
-              this.userInfo._id,
-              avatar_url
-            )
-          }
-        })
-        .then(r => {
-          if (r.status == 200 && r.data.status == 'ok') {
-            this.avatar = avatar_url
-            this.$notify({ type: 'success', message: '头像更换成功!' });
-          }
-        })
-        .catch(err => {
-          console.error(err)
-        })
-        .finally(() => {
-          loading.clear()
-        })
     }
   },
   computed: {
     ...mapState(['iconSize', 'golden', 'dodgerblue', 'green'])
   },
   created() {
+    let loading = this.$toast.loading({
+      message: '加载中'
+    })
     this.userInfo = this.$store.state.userInfo
+    // 重新再刷新一遍用户信息
+    this.$api.myserver.getUserInfo(this.userInfo._id)
+      .then(r => {
+        if (r.status == 200 && r.data.status == 'ok') {
+          this.userInfo = r.data.data
+        }
+      }).catch(err => {
+        console.error(err)
+      }).finally(() => {
+        loading.clear()
+      })
 
     // 更正头像
     if (!this.userInfo.avatar_url && this.userInfo.gender == 1) {

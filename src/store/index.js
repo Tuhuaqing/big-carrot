@@ -42,6 +42,8 @@ export default new Vuex.Store({
       myserver.getUserInfo(userId).then(r => {
         if (r.status == 200 && r.data.status == 'ok') {
           commit('login', r.data.data)
+        }else{
+          commit('logout')
         }
       }).catch(err => {
         console.error(err)

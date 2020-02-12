@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <span class="to-login" @click="$router.push({name:'login'})">&lt;返回登录</span>
     <div class="center title">注册微社交</div>
     <br />
     <br />
@@ -96,15 +97,13 @@ export default {
         password: this.password,
         email: this.email,
         birth: this.$common.dateToYmd(this.birth),
-        gender: this.gender,
-        membership: 'ordinary'
+        gender: this.gender
       }
 
       this.$api.myserver
         .register(user)
         .then(r => {
           if (r.status == 200 && r.data.status == 'ok') {
-            console.log(r)
             this.$lcStg.set('wsj_userInfo', r.data.data)
             this.$store.state.userInfo = r.data.data
             this.$toast('恭喜你,注册成功!')
@@ -176,6 +175,16 @@ export default {
 .gender-box {
   background: white;
   padding: 0.3rem;
+}
+
+// 去登陆按钮
+.to-login{
+  position:fixed;
+  top: .2rem;
+  left: .2rem;;
+  font-size: 0.3rem;
+  font-weight: bold;
+  color: dodgerblue;
 }
 </style>
 

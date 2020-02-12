@@ -76,6 +76,15 @@ const routes = [
       showTabBars: false
     }
   },
+  {
+    path: '/me/detail',
+    name: 'meDetail',
+    title: '个人详情',
+    component: () => import('../views/me.detail.vue'),
+    meta: {
+      showTabBars: false
+    }
+  },
   /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/login',

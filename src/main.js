@@ -45,13 +45,14 @@ router.beforeEach((to, from, next) => {
 
   // 先检索localStorage中是否有userInfo数据
   let user = lcStg.get('wsj_userInfo')
-  if (user && Object.keys(user).length) {
+  let isLoignIn = user && Object.keys(user).length
+  if (isLoignIn) {
     store.state.userInfo = user
     store.dispatch('fetchUserInfo', user._id)
   }
 
   // 没有用户信息并且不在白名单: 跳转登陆页面
-  if (!store.state.userInfo && !whiteList.includes(to.name)) {
+  if (!store.state.userInfo && !isLoignIn && !whiteList.includes(to.name)) {
     next({ name: 'login' })
   } else {
     // 否则通过
