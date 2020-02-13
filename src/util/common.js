@@ -11,8 +11,8 @@ export default {
     // 会员等级转中文
     turnMembership(m) {
         switch (m) {
-            case 'ordinary': return '大众会员'
-            case 'senior': return '高级会员'
+            case '0': return '大众会员'
+            case '1': return '高级会员'
         }
     }
 }

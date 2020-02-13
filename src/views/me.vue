@@ -10,6 +10,7 @@
         <!-- 头像 -->
         <div class="avatar">
           <img class="img" :src="avatar" alt="用户头像" />
+          <img v-if="userInfo.membership=='1'" class="v" src="@/assets/img/v.png" alt="V图标" />
         </div>
         <!-- 信息 -->
         <div class="info">
@@ -24,7 +25,7 @@
       <main>
         <!-- 卡片组1 -->
         <van-cell-group>
-          <van-cell title="微社交会员" is-link icon="shop-o" @click="queryTel">
+          <van-cell title="微社交会员" is-link icon="shop-o">
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -33,7 +34,7 @@
               :size="iconSize"
             />
           </van-cell>
-          <van-cell title="商家服务" is-link @click="queryDs">
+          <van-cell title="商家服务" is-link>
             <van-icon
               class="van-cell__left-icon"
               slot="icon"
@@ -81,7 +82,7 @@
               color="#FF5722"
               :size="iconSize"
             />
-          </van-cell> -->
+          </van-cell>-->
           <van-cell title="花呗代还" is-link>
             <van-icon
               class="van-cell__left-icon"
@@ -99,7 +100,7 @@
               :color="green"
               :size="iconSize"
             />
-          </van-cell> -->
+          </van-cell>-->
           <van-cell title="银行卡" is-link>
             <van-icon
               class="van-cell__left-icon"
@@ -212,32 +213,32 @@ export default {
         this.pullLoading = false
       }, 1000)
     },
-    // 点击微社交会员
-    queryTel() {
-    },
-    // 点击商家服务
-    queryDs() {
+    // 刷新用户信息
+    refreshUserInfo(id) {
+      let loading = this.$toast.loading({
+        message: '加载中'
+      })
+      // 重新再刷新一遍用户信息
+      this.$api.myserver.getUserInfo(id)
+        .then(r => {
+          if (r.status == 200 && r.data.status == 'ok') {
+            this.userInfo = r.data.data
+          }
+        }).catch(err => {
+          console.error(err)
+        }).finally(() => {
+          loading.clear()
+        })
     }
   },
   computed: {
     ...mapState(['iconSize', 'golden', 'dodgerblue', 'green'])
   },
   created() {
-    let loading = this.$toast.loading({
-      message: '加载中'
-    })
     this.userInfo = this.$store.state.userInfo
     // 重新再刷新一遍用户信息
-    this.$api.myserver.getUserInfo(this.userInfo._id)
-      .then(r => {
-        if (r.status == 200 && r.data.status == 'ok') {
-          this.userInfo = r.data.data
-        }
-      }).catch(err => {
-        console.error(err)
-      }).finally(() => {
-        loading.clear()
-      })
+    this.refreshUserInfo(this.userInfo._id)
+
 
     // 更正头像
     if (!this.userInfo.avatar_url && this.userInfo.gender == 1) {
@@ -279,11 +280,20 @@ export default {
     .avatar {
       width: 2rem;
       height: 2rem;
+      position: relative;
       border: 3px solid rgba($color: white, $alpha: 0.3);
 
       .img {
         width: 100%;
         height: 100%;
+      }
+
+      .v {
+        position: absolute;
+        width: 0.6rem;
+        height: 0.6rem;
+        right: -0.15rem;
+        bottom: -0.15rem;
       }
     }
 
