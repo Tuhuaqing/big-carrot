@@ -1,6 +1,6 @@
 
 const path = require('path')
-const debug = process.env.NODE_ENV !== 'production'
+const development = process.env.NODE_ENV !== 'production'
 const webpack = require('webpack')
 //const VueConf = require('./src/assets/js/libs/vue_config_class')
 //const vueConf = new VueConf(process.argv)
@@ -25,9 +25,11 @@ module.exports = {
     //     }
     // },
     configureWebpack: config => { // webpack配置，值位对象时会合并配置，为方法时会改写配置
-        if (debug) { // 开发环境配置
+        if (development) { // 开发环境配置
             // config.devtool = 'cheap-module-eval-source-map'
+
         } else { // 生产环境配置
+            
         }
         Object.assign(config, { // 开发生产共同配置，配置别名
             resolve: {
@@ -49,7 +51,7 @@ module.exports = {
         })
     },
     chainWebpack: config => { // webpack链接API，用于生成和修改webapck配置，
-        if (debug) {
+        if (development) {
             // 本地开发配置
         } else {
             // 生产开发配置
@@ -65,24 +67,6 @@ module.exports = {
         host: 'localhost',
         port: 8083,
         proxy: {
-            '/taobao': {
-                target: 'http://tcc.taobao.com',
-                ws: true,
-                secure: true,
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/taobao': ''
-                }
-            },
-            '/myserver':{
-                target: 'http://localhost:8858',
-                ws: true,
-                secure: true,
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/myserver': ''
-                }
-            },
             '/newserver':{
                 target: 'http://localhost:3001',
                 ws: true,
