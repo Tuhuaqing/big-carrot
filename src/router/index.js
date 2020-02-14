@@ -38,6 +38,15 @@ const routes = [
       showTabBars: true
     }
   },
+  {
+    path: '/dynamic/release',
+    name: 'dynamicRelease',
+    title: '发布动态',
+    component: () => import('../views/dynamic.release.vue'),
+    meta: {
+      showTabBars: false
+    }
+  },
   /////////////////////////////////////////////////////////////////////////////////////
   {
     path: '/friends',

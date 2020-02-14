@@ -2,15 +2,6 @@ import axios from 'axios'
 
 export default {
 
-    // 上传文件换取url
-    uploadAny(params) {
-        return axios.post('/newserver/file/upload', params, {
-            headers: {
-                'Content-Type': 'multipart/form-data;charset=utf-8'
-            }
-        })
-    },
-
     // 登录
     login(params) {
         return axios.post('/newserver/user/login', params)
@@ -44,5 +35,10 @@ export default {
     // 查询帖子
     getPosts(userid = ''){
         return axios.get(`/newserver/post?userId=${userid}`)
+    },
+
+    // 发布帖子
+    releasePost(params){
+        return axios.post('/newserver/post/release',params)
     }
 }

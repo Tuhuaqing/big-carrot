@@ -59,7 +59,7 @@
                 </div>
               </div>
               <!-- 评论区域 -->
-              <div class="right-comment-box">
+              <div class="right-comment-box" v-if="item.comments.length">
                 <div class="comment-item" :key="index" v-for="(cmt,index) in item.comments">
                   <span class="commentator">{{cmt.nickname}}</span>
                   <span class="colon">:</span>
@@ -102,9 +102,7 @@ export default {
   }),
   methods: {
     addPost() {
-      this.$dialog.alert({
-        message: '发帖功能正在拼命开发中...'
-      })
+      this.$router.push({ name: 'dynamicRelease' }).catch(err => { })
     },
     // 刷新帖子
     getPosts() {
@@ -139,9 +137,9 @@ export default {
       }
     }
   },
-  watch:{
-    showComment(newv,oldv){
-      if(newv && this.$refs.comment_input){
+  watch: {
+    showComment(newv, oldv) {
+      if (newv && this.$refs.comment_input) {
         this.$refs.comment_input.focus()
       }
     }
@@ -173,22 +171,21 @@ main {
     .item {
       display: flex;
       padding: 0.5rem;
-      // border: 1px solid red;
-      // justify-content: space-between;
+      // border: 1px solid red;//
       justify-content: center;
 
       .left {
-        width: 1.5rem;
+        width: 1.3rem;
         // border: 1px solid blue;
         .avatar {
-          width: 1.2rem;
-          height: 1.2rem;
+          width: 1rem;
+          height: 1rem;
         }
       }
       // right区域
       .right {
         width: 7.5rem;
-        // border: 1px solid green;
+        // border: 1px solid green;//
         // right昵称box
         .right-top {
           padding-bottom: 0.125rem;
@@ -210,11 +207,11 @@ main {
         .right-middle {
           padding-bottom: 0.125rem;
           .text-field {
-            font-size: 0.35rem;
+            font-size: 0.4rem;
             font-family: '微软雅黑';
           }
           .img-field {
-            // border: 1px solid gray;
+            // border: 1px solid gray;//
             padding-top: 0.25rem;
             .illustration {
               width: 2.35rem;
@@ -253,7 +250,7 @@ main {
           background: rgb(247, 247, 247);
           padding: 0.1rem 0.2rem;
           .comment-item {
-            font-size: 0.2rem;
+            font-size: 0.33rem;
             font-family: '微软雅黑';
             .commentator {
               color: rgb(58, 130, 212);

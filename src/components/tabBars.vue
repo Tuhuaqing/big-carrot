@@ -29,7 +29,7 @@ export default {
           activeIcon: 'wap-home',
           onClick: () => {
             if (this.$route.name != 'home') {
-              this.$router.push('/Home').catch(err=>{})
+              this.$router.push({name:'home'}).catch(err=>{})
             }
           }
         },
@@ -40,7 +40,7 @@ export default {
         //   activeIcon: 'gold-coin',
         //   onClick: () => {
         //     if (this.$route.name != 'treasure') {
-        //       this.$router.push('/treasure')
+        //       this.$router.push({name:'treasure'})
         //     }
         //   }
         // },
@@ -51,7 +51,7 @@ export default {
           activeIcon: 'eye',
           onClick: () => {
             if (this.$route.name != 'dynamic') {
-              this.$router.push('/dynamic').catch(err=>{})
+              this.$router.push({name:'dynamic'}).catch(err=>{})
             }
           }
         },
@@ -62,7 +62,7 @@ export default {
           activeIcon: 'friends',
           onClick: () => {
             if (this.$route.name != 'friends') {
-              this.$router.push('/friends').catch(err=>{})
+              this.$router.push({name:'friends'}).catch(err=>{})
             }
           }
         },
@@ -73,7 +73,7 @@ export default {
           activeIcon: 'manager',
           onClick: () => {
             if (this.$route.name != 'me') {
-              this.$router.push('/me').catch(err=>{})
+              this.$router.push({name:'me'}).catch(err=>{})
             }
           }
         }

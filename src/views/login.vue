@@ -76,7 +76,7 @@ export default {
             this.$toast('登录成功!')
             this.$lcStg.set('wsj_userInfo', r.data.data)
             this.$store.state.userInfo = r.data.data
-            this.$router.push('/me').catch(err => {})
+            this.$router.push({name:'me'}).catch(err => {})
           }else{
             this.$toast(r.data.message,{duration:3000})
           }

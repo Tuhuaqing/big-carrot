@@ -130,7 +130,7 @@ export default {
 
       // 先上传文件到文件服务器,再和后台交互
       let avatar_url
-      this.$api.myserver
+      this.$api.file
         .uploadAny(formData)
         .then(r => {
           if (r.status == 200 && r.data.status == 'ok') {
