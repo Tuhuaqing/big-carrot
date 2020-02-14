@@ -64,6 +64,11 @@ router.beforeEach((to, from, next) => {
 import common from '@/util/common'
 Vue.prototype.$common = common
 
+// moment.js
+import moment from 'moment'
+moment.locale('zh-cn');
+Vue.prototype.$moment = moment
+
 new Vue({
   router,
   store,

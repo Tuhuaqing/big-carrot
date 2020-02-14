@@ -39,5 +39,10 @@ export default {
     // 更改性别接口
     changeNickname(userid, nickname) {
         return axios.get(`/newserver/user/change-nickname/${userid}?nickname=${nickname}`)
+    },
+
+    // 查询帖子
+    getPosts(userid = ''){
+        return axios.get(`/newserver/post?userId=${userid}`)
     }
 }

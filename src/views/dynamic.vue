@@ -8,80 +8,57 @@
     </nav>
     <main>
       <header>
-        <van-search v-model="searchValue" placeholder="请输入搜索关键词" input-align="center" />
+        <van-search v-model="searchValue" placeholder="请输入搜索关键词" input-align="left" />
       </header>
       <transition name="van-slide-up">
-        <div class="posts" v-if="!loading">
-          <div class="item van-hairline--bottom">
+        <div class="posts" v-if="!loading" >
+          <div class="item van-hairline--bottom" v-for="item in posts" :key="item._id">
+            <!-- Left -->
             <div class="left">
-              <img src="@/assets/img/dft-avatar-girl.png" alt class="avatar" />
+              <img :src="item.userAvatarUrl" alt class="avatar" />
             </div>
+            <!-- Right -->
             <div class="right">
+              <!-- 昵称区域 -->
               <div class="right-top">
-                <span class="nickname">路三岁呀</span>
+                <span class="nickname" :class="{'vip-text':true}">{{item.nickname}}</span>
+                <van-tag :key="index" v-for="(tag,index) in item.tags" class="tag" type="danger">{{tag}}</van-tag>
               </div>
+              <!-- 内容区域 -->
               <div class="right-middle">
-                <div class="text-field">代码其实是写出来给人看的, 顺带能在机器上运行, 哈哈哈.</div>
-                <div class="img-field">
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
+                <div class="text-field">{{item.text}}</div>
+                <div class="img-field" v-if="item.imgs.length">
+                  <img class="illustration" :src="img" alt="配图" :key="index" v-for="(img,index) in item.imgs" />
                 </div>
               </div>
+              <!-- 操作区域 -->
               <div class="right-bottom">
                 <div class="time-box">
-                  <span class="time">1小时以前</span>
+                  <span class="time">{{$moment(item.dateTime,'YYYY-MM-DD HH:mm:ss').fromNow()}}</span>
+                </div>
+                <div class="operation-box">
+                  <span class="like">
+                    <van-icon class="like" name="like-o" size="0.5rem" />
+                    <span class="text">{{item.likeNumber | turnLikeNum}}</span>
+                  </span>
+                  <span class="comment">
+                    <van-icon class="comment" name="chat-o" size="0.5rem" />
+                    <span class="text">{{item.commentNumber | turnCommentNum}}</span>
+                  </span>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="item van-hairline--bottom">
-            <div class="left">
-              <img src="@/assets/img/dft-avatar-boy.png" alt class="avatar" />
-            </div>
-            <div class="right">
-              <div class="right-top">
-                <span class="nickname">路遥知马力</span>
-              </div>
-              <div class="right-middle">
-                <div class="text-field">代码其实是写出来给人看的, 顺带能在机器上运行, 我很赞同楼上的话.</div>
-                <div class="img-field">
-                  <img class="illustration" src="@/assets/img/avatar2.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar2.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
-                  <img class="illustration" src="@/assets/img/avatar.jpg" alt="配图" />
+              <!-- 评论区域 -->
+              <div class="right-comment-box">
+                <div class="comment-item" :key="index" v-for="(cmt,index) in item.comments">
+                  <span class="commentator">{{cmt.nickname}}</span>
+                  <span class="colon">:</span>
+                  <span class="content">{{cmt.content}}</span>
                 </div>
-              </div>
-              <div class="right-bottom">
-                <div class="time-box">
-                  <span class="time">2小时以前</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="left">
-              <img src="@/assets/img/dft-avatar-boy.png" alt class="avatar" />
-            </div>
-            <div class="right">
-              <div class="right-top">
-                <span class="nickname">路遥知马力</span>
-              </div>
-              <div class="right-middle">
-                <div class="text-field">想起那年夕阳下的奔跑, 那是我逝去的青春...</div>
-                <div v-if="false" class="img-field"></div>
-              </div>
-              <div class="right-bottom">
-                <div class="time-box">
-                  <span class="time">3小时以前</span>
-                </div>
+                <!-- <div class="comment-item">
+                  <span class="commentator">Sunshine</span>
+                  <span class="colon">:</span>
+                  <span class="content">秀儿, 敢去用那啥啥洗手液洗手吗,蒂花之秀!</span>
+                </div> -->
               </div>
             </div>
           </div>
@@ -101,19 +78,50 @@ import avatar_girl from '@/assets/img/dft-avatar-girl.png'
 export default {
   data: () => ({
     searchValue: '',
-    loading: true
+    loading: true,
+    posts: []
   }),
   methods: {
     addPost() {
       this.$dialog.alert({
         message: '发帖功能正在拼命开发中...'
       })
+    },
+    // 刷新帖子
+    getPosts(){
+      this.$api.myserver.getPosts()
+      .then(r=>{
+        if(r.status == 200 && r.data.status == 'ok'){
+          this.posts = r.data.data
+          this.loading = false
+        }
+      })
+    }
+  },
+  filters:{
+    turnLikeNum(likeNumber){
+      let likeNum = Number.parseInt(likeNumber)
+      if(likeNum <= 0){
+        return '赞'
+      }else if(likeNum>=999){
+        return '999+'
+      }else{
+        return likeNum
+      }
+    },
+    turnCommentNum(commentNumber){
+      let commentNum = Number.parseInt(commentNumber)
+      if(commentNum <= 0){
+        return '评论'
+      }else if(commentNum>=999){
+        return '999+'
+      }else{
+        return commentNum
+      }
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.loading = false
-    }, 1000);
+    this.getPosts()
   }
 }
 </script>
@@ -157,11 +165,18 @@ main {
         // right昵称box
         .right-top {
           padding-bottom: 0.125rem;
+          vertical-align: middle;
           .nickname {
             color: rgb(58, 130, 212);
             font-size: 0.4rem;
             font-weight: bold;
             font-family: '微软雅黑';
+          }
+          .vip-text {
+            color: #ffb800;
+          }
+          .tag {
+            margin-left: 0.2rem;
           }
         }
         // right内容box
@@ -191,7 +206,36 @@ main {
             }
           }
           .operation-box {
-            // border: 1px solid red;
+            margin-right: 0.2rem;
+            .like,
+            .comment {
+              vertical-align: middle;
+              .text {
+                padding: 0.1rem;
+                display: inline-block;
+                min-width: 1rem;
+                max-width: 1rem;
+              }
+            }
+          }
+        }
+        // right评论box
+        .right-comment-box {
+          margin-top: 0.15rem;
+          background: rgb(247, 247, 247);
+          padding: 0.1rem 0.2rem;
+          .comment-item{
+            font-size: 0.2rem;
+            font-family: "微软雅黑";
+            .commentator{
+              color:rgb(58, 130, 212);
+            }
+            .colon{
+              padding: 0 0.1rem 0 0.05rem;
+            }
+          }
+          .comment-item:not(:first-child){
+            margin-top: 0.1rem;
           }
         }
       }
