@@ -102,7 +102,7 @@ export default {
   display: -webkit-flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 9999;
+  z-index: 2000;
 
   .item {
     height: 100%;
