@@ -148,14 +148,15 @@ main {
       display: flex;
       padding: 0.5rem;
       // border: 1px solid red;
-      justify-content: space-between;
+      // justify-content: space-between;
+      justify-content: center;
 
       .left {
-        width: 1.1rem;
+        width: 1.5rem;
         // border: 1px solid blue;
         .avatar {
-          width: 100%;
-          height: 1.065rem;
+          width: 1.2rem;
+          height: 1.2rem;
         }
       }
       // right区域
@@ -187,6 +188,7 @@ main {
             font-family: '微软雅黑';
           }
           .img-field {
+            // border: 1px solid gray;
             padding-top: 0.25rem;
             .illustration {
               width: 2.35rem;
